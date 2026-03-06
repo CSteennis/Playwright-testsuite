@@ -10,13 +10,13 @@ def before_each_test(page: Page):
 
 #AC1
 def test_product_overview(page: Page, before_each_test: None):
-    expect(page.get_by_role('list').filter(has=page.locator('[data-test="product-1"]'))).to_be_visible()
+    expect(page.locator('[data-test=""]')).to_be_visible()
 
 #AC2
 def test_product_card_information(page: Page, before_each_test: None):
-    grid = page.get_by_role('list').filter(has=page.locator('[data-test="product-1"]'))
+    grid = page.locator('[data-test=""]')
     expect(grid).to_be_visible()
-    product_cards = grid.get_by_role('listitem').all()
+    product_cards = grid.locator('.card').all()
     for pc in product_cards:
         loc = HomeLocators(pc)
         expect(pc.get_by_role('img')).to_be_visible()

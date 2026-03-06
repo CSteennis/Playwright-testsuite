@@ -1,5 +1,5 @@
 from playwright.sync_api import Page
-from sprint1.conf import version
+from conf import version
 
 class Home():
 

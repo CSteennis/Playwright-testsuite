@@ -12,6 +12,8 @@ def test_category_page(page: Page, category_name):
     homepage.navigate()
 
     # Given I click on a category name
+    if homepage.version >= 'v2':
+        page.get_by_role('navigation').get_by_role('button', name='Categories').click()
     page.get_by_role('link', name=category_name).click()
 
     # Then a page with products belonging to that category is displayed.

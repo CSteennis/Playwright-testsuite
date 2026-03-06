@@ -11,6 +11,8 @@ def test_prod_detail_page_displayed(page: Page, start_page):
     # Given I click on a product from the overview or category page
     Home(page).navigate()
     if start_page == 'category':
+        if version >= 'v2':
+            page.get_by_role('navigation').get_by_role('button', name='Categories').click()
         page.locator('[data-test="nav-hand-tools"]').click()
 
     page.locator('[data-test="product-1"]').click()

@@ -8,7 +8,7 @@ dummy_data = {
     'last_name': 'Bar',
     'email': 'foo@bar.com',
     'subject': 'Webmaster',
-    'msg': 'this msg is a fifty character long message exactly'
+    'msg': 'this msg is a fiffty character long message exactly'
 }
 
 dummy_data1 = {
