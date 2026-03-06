@@ -4,17 +4,16 @@ from conf import version
 class Home():
 
     def __init__(self, page: Page):
-        self.version = version
         self.page = page
 
     def navigate(self):
-        self.page.goto(f'https://{self.version}.practicesoftwaretesting.com/#/')
+        self.page.goto(f'https://{version}.practicesoftwaretesting.com/#/')
+
 
 class Contact():
 
     def __init__(self, page: Page):
-        self.version = version
         self.page = page
 
     def navigate(self):
-        self.page.goto(f'https://{self.version}.practicesoftwaretesting.com/#/contact')
+        self.page.goto(f'https://{version}.practicesoftwaretesting.com/#/contact')
