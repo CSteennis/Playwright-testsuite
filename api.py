@@ -1,5 +1,5 @@
 from playwright.sync_api import Playwright
-from conf import version
+from conftest import version
 
 class APIBase():
     def get_cat_names(self, playwright: Playwright):
@@ -7,4 +7,7 @@ class APIBase():
         response = api_request_context.get('/categories')
 
         assert response.ok
-        print(response.json())
+        return response.json()
+
+
+
