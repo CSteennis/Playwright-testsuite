@@ -20,7 +20,7 @@ dummy_data1 = {
 }
 
 @pytest.fixture
-def contact_form(page: Page):
+def contact_form(page: Page, set_testid):
     # Given I navigate to the contact page
     Contact(page).navigate()
     
@@ -61,13 +61,25 @@ def test_subject_options(contact_form: Locator):
     for expected_option, real_option in zip(options, real_options.all()):
         expect(real_option).to_have_text(expected_option)
 
-def test_message_minimum_len(page: Page, contact_form: Locator):
+@pytest.mark.parametrize('message', ["", "less than 50"])
+def test_message_minimum_len(page: Page, contact_form: Locator, message):
     # Given I enter a message with fewer than 50 chars
-    contact_form.get_by_label('Message').fill('less than 50')
+    contact_form.get_by_label('Message').fill(message)
     contact_form.get_by_role('button', name='Send').click()
     
     # Then a validation error is shown indicating the message must be at least 50 characters
-    expect(page.get_by_text('50 characters')).to_be_visible()
+    expect(page.get_by_test_id('message-error')).to_be_visible()
+    if len(message) > 0:
+        expect(page.get_by_test_id('message-error').get_by_text('50 characters')).to_be_visible()
+
+@pytest.mark.parametrize('message', [dummy_data['msg'], dummy_data1['msg']])
+def test_message_len(page: Page, contact_form: Locator, message):
+    # Given I enter a message with fewer than 50 chars
+    contact_form.get_by_label('Message').fill(message)
+    contact_form.get_by_role('button', name='Send').click()
+    
+    # Then a validation error is shown indicating the message must be at least 50 characters
+    expect(page.get_by_test_id('message-error')).not_to_be_visible()
     
 def test_succesfull_submission(page: Page, contact_form: Locator):
     # Given all required fields are filled in

@@ -1,5 +1,5 @@
 from playwright.sync_api import Playwright
-from conf import version
+from conftest import version
 
 class APIBase():
     def get_cat_names(self, playwright: Playwright):
