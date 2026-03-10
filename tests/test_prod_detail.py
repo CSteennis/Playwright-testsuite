@@ -1,7 +1,6 @@
 from playwright.sync_api import Page, expect
 import pytest, re
 
-from conftest import version
 from pages import Home, Product
 
 import time
@@ -9,12 +8,10 @@ import time
 pages = ['overview', 'category']
 #AC1
 @pytest.mark.parametrize('start_page', pages)
-def test_prod_detail_page_displayed(page: Page, start_page, set_testid):
+def test_prod_detail_page_displayed(page: Page, start_page, homepage):
     # Given I click on a product from the overview or category page
-    Home(page).navigate()
     if start_page == 'category':
-        if version >= 'v2':
-            page.get_by_role('navigation').get_by_role('button', name='Categories').click()
+        page.get_by_role('navigation').get_by_role('button', name='Categories').click()
         page.get_by_test_id('nav-hand-tools').click()
 
     prod_card = page.locator('.card').first
@@ -29,7 +26,7 @@ def test_prod_info_shown(page: Page, set_testid):
     Product(page).navigate(1)
 
     # Then the following information is shown:
-    expect(page.get_by_role('img')).to_be_visible()
+    expect(page.get_by_role("img", name="A generic square placeholder")).to_be_visible()
     expect(page.get_by_test_id('product-name')).to_be_visible()
     expect(page.get_by_test_id('product-description')).to_be_visible()
     expect(page.get_by_test_id('unit-price')).to_be_visible()
