@@ -16,7 +16,6 @@ def test_maximum_search_len(homepage: Page, query):
     searchbox = homepage.get_by_test_id('search-query')
     searchbox.fill(query)
     homepage.get_by_role('button', name="Search").click()
-    x = len(query)
 
     if len(query) > 40:
         expect(homepage.get_by_role('alert', name='validation-error')).to_be_visible()

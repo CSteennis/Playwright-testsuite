@@ -1,7 +1,7 @@
 import pytest
 from playwright.sync_api import Playwright
 
-version = 'v2'
+version = 'v3'
 
 @pytest.fixture(scope='session')
 def set_testid(playwright: Playwright):

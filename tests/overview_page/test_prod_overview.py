@@ -5,7 +5,7 @@ from locators import HomeLocators
 
 
 #AC1
-def test_product_overview(page: Page, homepage):
+def test_product_overview_displayed(page: Page, homepage):
     expect(page.get_by_test_id("")).to_be_visible()
 
 #AC2
@@ -14,7 +14,6 @@ def test_product_card_information(page: Page, homepage):
     expect(grid).to_be_visible()
     product_cards = grid.locator('.card').all()
     for pc in product_cards:
-        loc = HomeLocators(pc)
         expect(pc.get_by_role('img')).to_be_visible()
         expect(pc.get_by_test_id("product-name")).to_be_visible()
         expect(pc.get_by_test_id("product-price")).to_be_visible()
