@@ -38,7 +38,7 @@ def context(browser: Browser, request):
 
         os.replace(video_path, f"{results_dir}/{node_name}/video.webm")
 
-        print(f"Test failed. Video saved at: {video_path}")
+        print(f"Test failed. Video saved at: {results_dir}/{node_name}/video.webm")
     else:
         context.close()
         os.remove(video_path)
