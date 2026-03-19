@@ -1,7 +1,7 @@
 from playwright.sync_api import Locator, Page, expect
 import pytest
 
-from pages import Contact
+from tests.python.pages.contactpage import Contact
 
 dummy_data = {
     'first_name': 'Foo',

@@ -1,8 +1,8 @@
 from playwright.sync_api import Locator, Page, expect
 import pytest
 import re
-from pages import Home
-from api import APIBase
+from tests.python.pages.homepage import Home
+from tests.python.utils.api import APIBase
 
 category_name_list = ['Hand Tools', 'Power Tools']
 

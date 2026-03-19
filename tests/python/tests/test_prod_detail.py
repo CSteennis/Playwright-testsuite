@@ -1,8 +1,8 @@
 from playwright.sync_api import Page, expect
 import pytest, re
 
-from conftest import version
-from pages import Home, Product
+from tests.python.pages.homepage import Home
+from tests.python.pages.productpage import Product
 
 import time
 
