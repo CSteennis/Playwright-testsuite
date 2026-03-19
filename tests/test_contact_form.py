@@ -78,7 +78,7 @@ def test_message_len(page: Page, contact_form: Locator, message):
     contact_form.get_by_label('Message').fill(message)
     contact_form.get_by_role('button', name='Send').click()
     
-    # Then a validation error is shown indicating the message must be at least 50 characters
+    # Then a validation error is not shown indicating the message must be at least 50 characters
     expect(page.get_by_test_id('message-error')).not_to_be_visible()
     
 def test_succesfull_submission(page: Page, contact_form: Locator):

@@ -3,14 +3,12 @@ from playwright.sync_api import Playwright, Browser
 
 import os
 
-version = 'v3'
-
+from config import version
 
 @pytest.fixture()
 def context(browser: Browser, request):
     results_dir = "test_result"
-    if not os.path.exists(results_dir):
-        os.makedirs(results_dir)
+    os.makedirs(results_dir, exist_ok=True)
 
     node_name = request.node.name
     context = browser.new_context(record_video_dir=f"{results_dir}/tmp_videos")
@@ -18,7 +16,7 @@ def context(browser: Browser, request):
     context.tracing.start(
         screenshots=True,
         snapshots=True,
-        sources=True
+        sources=True,
     )
 
     yield context
@@ -26,9 +24,10 @@ def context(browser: Browser, request):
     page = context.pages[0]
     video_path = page.video.path()
 
-    failed = request.node.rep_call.failed
+    failed = getattr(request.node, "rep_call", None) and request.node.rep_call.failed
+    wants_record = request.node.get_closest_marker("record") is not None
 
-    if failed:
+    if failed or wants_record:
         os.makedirs(f"{results_dir}/{node_name}", exist_ok=True)
 
         page.screenshot(path=f"{results_dir}/{node_name}/screenshot.png")
@@ -38,7 +37,8 @@ def context(browser: Browser, request):
 
         os.replace(video_path, f"{results_dir}/{node_name}/video.webm")
 
-        print(f"Test failed. Video saved at: {results_dir}/{node_name}/video.webm")
+        reason = "failed" if failed else "marked"
+        print(f"Test {reason} – video saved at: {results_dir}/{node_name}/video.webm")
     else:
         context.close()
         os.remove(video_path)

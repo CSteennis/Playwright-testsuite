@@ -1,5 +1,5 @@
 from playwright.sync_api import Page
-from conftest import version
+from config import version
 
 class Home():
 
@@ -25,3 +25,11 @@ class Product():
 
     def navigate(self, product_id: int):
         self.page.goto(f'https://{version}.practicesoftwaretesting.com/#/product/{product_id}')
+
+class Rentals():
+
+    def __init__(self, page: Page):
+        self.page = page
+
+    def navigate(self):
+        self.page.goto(f'https://{version}.practicesoftwaretesting.com/#/rentals')
