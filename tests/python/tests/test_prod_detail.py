@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 import pytest, re
 
-from pages import Home, Product
+from tests.python.pages.pages import Home, Product
 
 import time
 
