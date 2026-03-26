@@ -1,4 +1,4 @@
-// import data from '../test-data/overview-page-data.json'
+import data from '../../../shared/overview-page-data.json'
 import { randomMessage } from '../utils'
 
 type QueryCase = {
@@ -16,3 +16,5 @@ function queryCase(len: number): QueryCase {
         len: len
     }
 }
+
+export const categoryNames = data.categoryNames

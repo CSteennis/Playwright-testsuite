@@ -36,4 +36,8 @@ export class OverviewPage {
         const testProductDetails = this.productDetails(testProductCard)
         await testProductDetails.productName.click()
     }
+    
+    async gotoCategoryPage(category: string) {
+        await this.page.getByRole('link', { name: category }).click()
+    }
 }

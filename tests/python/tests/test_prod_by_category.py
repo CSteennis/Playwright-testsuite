@@ -6,6 +6,7 @@ from tests.python.utils.api import APIBase
 
 category_name_list = ['Hand Tools', 'Power Tools']
 
+@pytest.mark.record
 @pytest.mark.parametrize('category_name', category_name_list)
 def test_category_page(page: Page, category_name, set_testid):
     homepage = Home(page)
@@ -19,4 +20,3 @@ def test_category_page(page: Page, category_name, set_testid):
     expect(page).to_have_url(re.compile(cat_string))
 
     expect(page.get_by_test_id('page-title')).to_have_text(re.compile(category_name))
-
