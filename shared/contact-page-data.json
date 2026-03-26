@@ -1,0 +1,21 @@
+{
+    "expectedOptions": [
+            "Select a subject",
+            "Customer service",
+            "Webmaster",
+            "Return",
+            "Payments",
+            "Warranty",
+            "Status of my order"
+        ],
+    "minCharError": "Message must be minimal 50 characters",
+    "zeroCharError": "Message is required",
+    "formDummyData": {
+        "firstName": "test",
+        "lastName": "user",
+        "subject": "Webmaster",
+        "email": "foo@bar.com",
+        "message": "This is a valid message of 50 characters or longer!"
+    },
+    "formSuccessText": "Thanks for your message! We will contact you shortly."
+}
