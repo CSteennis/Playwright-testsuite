@@ -1,6 +1,6 @@
 import pytest
 
-from pages import Product
+from tests.python.pages.pages import Product
 
 @pytest.fixture
 def product_page(page, set_testid):

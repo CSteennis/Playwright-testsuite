@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 import pytest, re
 
-from pages import Rentals
+from tests.python.pages.pages import Rentals
 
 @pytest.fixture
 def rental_page(page: Page, set_testid):
